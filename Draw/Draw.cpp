@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "Draw.h"
+#include <vector>
 
 
 const int rectangleIndex = 0;
@@ -15,17 +16,17 @@ Draw::Draw(int largeur, int hauteur, std::string name) {
 
     std::vector<Rectangle *> rectangles;
 
-
     std::vector<std::vector<Forme *> > formes = {
-            {rectangles.begin(), rectangles.end()}
+        {rectangles.begin(), rectangles.end()}
     };
+    
     this->formes = formes;
 }
 
 int Draw::getHauteur() { return this->hauteur; }
 int Draw::getLargeur() { return this->largeur; }
 
-void Draw::createForme() {
+void Draw::createForme(){
     int typeForme;
     do {
         std::cout << "Quel figure voulez vous créer ? \n";
@@ -64,9 +65,9 @@ bool Draw::rectangleIsconform(Rectangle rectangle) {
     else if(rectangle.getCorner().getY() + rectangle.getHauteur() > this->hauteur) return false;
     else return true;
 }
-
 /*
  * Return 0 for cancel
+ 
  * Return 1 for retry
  */
 int Draw::cancelOrRetry() {
@@ -115,4 +116,14 @@ void Draw::drawFormes(std::string fileName) {
 void Draw::drawRectangle(Forme *forme, std::string fileName) {
     Rectangle *rectangle = dynamic_cast<Rectangle*>(forme);
     rectangle->draw(fileName);
+}
+
+int Draw::getListFormeLength() {
+    return this->formes.size();
+}
+
+bool Draw::pointIsConform(Point point) {
+    if(this->largeur < point.getY() && point.getY() < 0) return false;
+    else if(this->hauteur < point.getX() && point.getX() < 0) return false;
+    else return true;
 }

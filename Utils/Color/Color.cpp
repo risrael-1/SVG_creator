@@ -32,6 +32,7 @@ Color Color::create() {
             }
         }
     }while(!isConformSaisie);
+return Color("red");
 }
 
 

@@ -40,11 +40,11 @@ void populateDraw(Draw* draw) {
 int main() {
     std::cout << "Bienvenue dans SVG Creator le super créateur de dessin !\n";
     std::cout << "Pour commencer veuillez créer votre dessin :\n";
-    // Draw draw = createDraw();
-    // populateDraw(&draw);
-    // std::cout << "nb de forme du dessin : " << draw.getListFormeLength() << "\n";
-    // std::string result = draw.createSvg();
-    // std::cout << "file created name : " << result;
+    Draw draw = createDraw();
+    populateDraw(&draw);
+    std::cout << "nb de forme du dessin : " << draw.getListFormeLength() << "\n";
+    std::string result = draw.createSvg();
+    std::cout << "file created name : " << result;
     return 0;
 }
 
