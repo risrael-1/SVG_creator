@@ -12,8 +12,7 @@ public:
     int getHauteur();
     int getLargeur();
     Point getCorner();
-    // Why this dosn't work ?
-    // bool isConform(Draw draw);
+ 
 
 private:
         int hauteur;

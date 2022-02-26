@@ -6,21 +6,17 @@
 
 
 const int rectangleIndex = 0;
-const int lineIndex = 1;
-
+const int lineIndex = 12;
+int forme = 0;
+Rectangle rectangle;
+#define M 1
+#define N 1
 
 Draw::Draw(int largeur, int hauteur, std::string name) {
     this->hauteur = hauteur;
     this->largeur = largeur;
     this->name = name;
-
-    std::vector<Rectangle *> rectangles;
-
-    std::vector<std::vector<Forme *> > formes = {
-        {rectangles.begin(), rectangles.end()}
-    };
     
-    this->formes = formes;
 }
 
 int Draw::getHauteur() { return this->hauteur; }
@@ -34,30 +30,22 @@ void Draw::createForme(){
         std::cin >> typeForme;
     }while(typeForme != 1 && typeForme != 2 && typeForme != 3 && typeForme != 4);
     switch(typeForme){
-        case 1: this->createRectangle(); break;
+       
+        case 1: this->createRectangle();
+        forme = 1;break;
         default: break;
     }
 }
 
-
-void Draw::addForme(Forme* forme, int index) {
-    this->formes[index].push_back(forme);
-}
-
-
 void Draw::createRectangle() {
-    Rectangle rectangle;
     bool isConform;
     rectangle = Rectangle::create();
     isConform = this->rectangleIsconform(rectangle);
-    if(isConform) {this->addForme(&rectangle, rectangleIndex);}
-    else {
+    if(!isConform) {
         int cancelOrRetry = this->cancelOrRetry();
         if(cancelOrRetry == 1) {this->createRectangle();}
     }
 }
-
-
 
 bool Draw::rectangleIsconform(Rectangle rectangle) {
     if(!this->pointIsConform(rectangle.getCorner())) return false;
@@ -65,11 +53,7 @@ bool Draw::rectangleIsconform(Rectangle rectangle) {
     else if(rectangle.getCorner().getY() + rectangle.getHauteur() > this->hauteur) return false;
     else return true;
 }
-/*
- * Return 0 for cancel
- 
- * Return 1 for retry
- */
+
 int Draw::cancelOrRetry() {
     int returnCode;
     std::cout << "La figure que vous avez créer n'est pas positionnable sur le dessin :/ \n";
@@ -90,40 +74,20 @@ std::string Draw::createSvg() {
     svgFile << "<svg ";
     svgFile << "width=\"" << this->getLargeur() << "\" ";
     svgFile << "height=\"" << this->getHauteur() << "\" >\n";
-    svgFile.close();
-    std::cout << "size of formes : " << this->formes.size() << "\n";
-    std::cout << "size of line after : " << this->formes[lineIndex].size() << "\n";
-    this->drawFormes(fileName);
+    svgFile.close();        
+    switch(forme){
+       
+        case 1: Rectangle *rectangle2 = &rectangle;
+        rectangle2->draw(fileName);
+       
+    }
     svgFile.open(fileName, std::ios::app);
     svgFile << "</svg>";
     return fileName;
 }
 
-void Draw::drawFormes(std::string fileName) {
-    for(int i = 0; i < this->formes.size(); i++) {
-        for(int j = 0; j < this->formes[i].size(); j++) {
-            switch(i) {
-                case rectangleIndex: {
-                    this->drawRectangle(this->formes[rectangleIndex][j], fileName);
-                    break;
-                }
-                default: break;
-            }
-        }
-    }
-}
-
-void Draw::drawRectangle(Forme *forme, std::string fileName) {
-    Rectangle *rectangle = dynamic_cast<Rectangle*>(forme);
-    rectangle->draw(fileName);
-}
-
-int Draw::getListFormeLength() {
-    return this->formes.size();
-}
-
 bool Draw::pointIsConform(Point point) {
-    if(this->largeur < point.getY() && point.getY() < 0) return false;
-    else if(this->hauteur < point.getX() && point.getX() < 0) return false;
+    if(this->largeur < point.getY() || point.getY() < 0) return false;
+    else if(this->hauteur < point.getX() || point.getX() < 0) return false;
     else return true;
 }

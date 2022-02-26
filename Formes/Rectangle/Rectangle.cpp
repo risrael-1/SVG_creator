@@ -42,6 +42,7 @@ int Rectangle::getLargeur() {return this->largeur;}
 Point Rectangle::getCorner() {return this->topCorner;}
 
 void Rectangle::draw(std::string fileName) {
+    std::cout << "tyty : \n";
     std::ofstream mySvg;
     mySvg.open(fileName, std::ios::app);
     mySvg << "<rect ";
