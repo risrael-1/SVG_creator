@@ -10,7 +10,7 @@ class Circle : public Forme {
 public:
     static Circle create();
     Circle();
-    Circle(Point point, int radius);
+    Circle(Point point, int radius, Color color);
     void draw(std::string fileName);
 
     Point getCenter();

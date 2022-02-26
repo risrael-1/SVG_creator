@@ -36,8 +36,10 @@ void Draw::createForme(){
     switch(typeForme){
        
         case 1: this->createRectangle();
-        case 2: this->createCircle(); break;
         forme = 1;break;
+        case 2: this->createCircle(); 
+        forme = 2;break;
+       
         default: break;
     }
 }
@@ -102,9 +104,12 @@ std::string Draw::createSvg() {
     svgFile.close();        
     switch(forme){
        
-        case 1: Rectangle *rectangle2 = &rectangle;
-        rectangle2->draw(fileName);
+        case 1: {Rectangle *currentrectangle = &rectangle;currentrectangle->draw(fileName);break;}
+        
+        case 2: {Circle *currentcircle = &circle;currentcircle->draw(fileName);break;}
        
+        default: 
+        {break;}
     }
     svgFile.open(fileName, std::ios::app);
     svgFile << "</svg>";

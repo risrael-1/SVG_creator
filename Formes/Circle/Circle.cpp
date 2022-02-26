@@ -16,11 +16,12 @@ Circle Circle::create() {
     std::cout << "\n Passons a la couleur de votre cercle";
     color = Color::create();
 
-    return Circle(point, radius);
+    return Circle(point, radius, color);
 }
-Circle::Circle(Point point, int radius){
+Circle::Circle(Point point, int radius, Color color){
     this->m_center = point;
     this->m_radius = radius;
+    this->color = color;
 }
 
 Circle::Circle() {
