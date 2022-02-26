@@ -48,7 +48,7 @@ void Rectangle::draw(std::string fileName) {
     mySvg << "<rect ";
     mySvg << "x=\"" << this->topCorner.getX() << "\" " << "y=\"" << this->topCorner.getY() << "\" ";
     mySvg << "width=\"" << this->largeur << "\" " << "height=\"" << this->hauteur << "\" ";
-    mySvg << "stroke=\"" << this->color.getColorName() << "\" ";
+    mySvg << "fill=\"" << this->color.getColorName() << "\" ";
     mySvg << "stroke-width=\"4\" ";
     mySvg << "/>\n";
     mySvg.close();

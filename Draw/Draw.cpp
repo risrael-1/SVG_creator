@@ -6,14 +6,11 @@
 #include "../Utils/TerminalColors.h"
 
 
-const int rectangleIndex = 0;
-const int circleIndex = 3;
-const int lineIndex = 12;
 int forme = 0;
 Rectangle rectangle;
 Circle circle;
-#define M 1
-#define N 1
+Polygone polygone;
+Line line;
 
 Draw::Draw(int largeur, int hauteur, std::string name) {
     this->hauteur = hauteur;
@@ -30,7 +27,9 @@ void Draw::createForme(){
     do {
         std::cout << "Quel figure voulez vous créer ? \n";
         std::cout << BOLD(FYEL("Pour un rectangle taper 1\n"));
-        std::cout << BOLD(FYEL("Pour un cercle taper 2\n"));
+        std::cout << BOLD(FMAG("Pour un cercle taper 2\n"));
+        std::cout << BOLD(FRED("Pour un polygone taper 3\n"));
+        std::cout << BOLD(FGRN("Pour un segment taper 4\n"));
         std::cin >> typeForme;
     }while(typeForme != 1 && typeForme != 2 && typeForme != 3 && typeForme != 4);
     switch(typeForme){
@@ -39,7 +38,10 @@ void Draw::createForme(){
         forme = 1;break;
         case 2: this->createCircle(); 
         forme = 2;break;
-       
+        case 3: this->createPolygone(); 
+        forme = 3;break;
+        case 4: this->createLine(); 
+        forme = 4;break;
         default: break;
     }
 }
@@ -54,13 +56,6 @@ void Draw::createRectangle() {
     }
 }
 
-bool Draw::rectangleIsconform(Rectangle rectangle) {
-    if(!this->pointIsConform(rectangle.getCorner())) return false;
-    else if(rectangle.getCorner().getX() + rectangle.getLargeur() > this->largeur) return false;
-    else if(rectangle.getCorner().getY() + rectangle.getHauteur() > this->hauteur) return false;
-    else return true;
-}
-
 void Draw::createCircle() {
     bool isConform;
     circle = Circle::create();
@@ -68,6 +63,26 @@ void Draw::createCircle() {
     if(!isConform) {
         int cancelOrRetry = this->cancelOrRetry();
         if(cancelOrRetry == 1) {this->createCircle();}
+    }
+}
+
+void Draw::createPolygone() {
+    bool isConform;
+    polygone = Polygone::create();
+    isConform = this->polygoneIsconform(&polygone);
+    if(!isConform){
+        int cancelOrRetry = this->cancelOrRetry();
+        if(cancelOrRetry == 1) {this->createPolygone();}
+    }
+}
+
+void Draw::createLine() {
+    bool isConform;
+    line = Line::create();
+    isConform = this->lineIsconform(line);
+    if(!isConform)  {
+        int cancelOrRetry = this->cancelOrRetry();
+        if(cancelOrRetry == 1) {this->createLine();}
     }
 }
 
@@ -80,6 +95,34 @@ bool Draw::circleIsconform(Circle circle) {
     else return true;
 }
 
+bool Draw::polygoneIsconform(Polygone* polygone) {
+    std::vector<Point>::iterator it,end;
+    bool isConform = true;
+    for(int i = 0; i<polygone->getListPoint().size(); i++){
+        if(!this->pointIsConform(polygone->getListPoint()[i])) {isConform = false;}
+    }
+    return isConform;
+}
+
+bool Draw::rectangleIsconform(Rectangle rectangle) {
+    if(!this->pointIsConform(rectangle.getCorner())) return false;
+    else if(rectangle.getCorner().getX() + rectangle.getLargeur() > this->largeur) return false;
+    else if(rectangle.getCorner().getY() + rectangle.getHauteur() > this->hauteur) return false;
+    else return true;
+}
+
+bool Draw::lineIsconform(Line line) {
+    if(!this->pointIsConform(line.getA())) return false;
+    else if(!this->pointIsConform(line.getB())) return false;
+    else return true;
+}
+
+bool Draw::pointIsConform(Point point) {
+    if(this->largeur < point.getY() || point.getY() < 0) return false;
+    else if(this->hauteur < point.getX() || point.getX() < 0) return false;
+    else return true;
+}
+
 int Draw::cancelOrRetry() {
     int returnCode;
     std::cout << "La figure que vous avez créer n'est pas positionnable sur le dessin :/ \n";
@@ -87,7 +130,7 @@ int Draw::cancelOrRetry() {
         std::cout << "Voulez vous recommencer : taper 1\n";
         std::cout << "Ou abandonner: taper 2 :";
         std::cin >> returnCode;
-    }while(returnCode != 2 && returnCode != 1);
+    }while(returnCode != 1 && returnCode != 2 && returnCode != 3);
     return returnCode;
 }
 
@@ -108,16 +151,15 @@ std::string Draw::createSvg() {
         
         case 2: {Circle *currentcircle = &circle;currentcircle->draw(fileName);break;}
        
+        case 3: {Polygone *currentpolygone = &polygone;currentpolygone->draw(fileName);break;}
+
+        case 4: {Line *currentline = &line;currentline->draw(fileName);break;}
+
         default: 
         {break;}
+
     }
     svgFile.open(fileName, std::ios::app);
     svgFile << "</svg>";
     return fileName;
-}
-
-bool Draw::pointIsConform(Point point) {
-    if(this->largeur < point.getY() || point.getY() < 0) return false;
-    else if(this->hauteur < point.getX() || point.getX() < 0) return false;
-    else return true;
 }

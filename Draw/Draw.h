@@ -10,6 +10,8 @@
 
 #include "../Formes/Rectangle/Rectangle.h"
 #include "../Formes/Circle/Circle.h"
+#include "../Formes/Polygone/Polygone.h"
+#include "../Formes/Line/Line.h"
 
 class Draw {
 
@@ -28,11 +30,17 @@ private:
     std::string name;
 
     void createRectangle();
+    void createPolygone();
     void createCircle();
+    void createLine();
+
     int cancelOrRetry();
+    
     bool pointIsConform(Point point);
     bool rectangleIsconform(Rectangle rectangle);
     bool circleIsconform(Circle circle);
+    bool polygoneIsconform(Polygone* polygone);
+    bool lineIsconform(Line line);
 };
 
 
