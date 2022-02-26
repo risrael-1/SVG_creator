@@ -1,6 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
+#include "Utils/TerminalColors.h"
 
 #include "Draw/Draw.h"
 
@@ -9,7 +10,7 @@ Draw createDraw() {
     int largeur;
     std::string drawName;
     bool validData = false;
-    std::cout << "Entrez le nom de votre dessin : ";
+    std::cout << BOLD(FBLU("Pour commencer veuillez entrez le nom de votre dessin : \n \n"));
     std::cin >> drawName;
     std::cout << "\n";
     do {
@@ -31,8 +32,7 @@ void populateDraw(Draw* draw) {
 }
 
 int main() {
-    std::cout << "Bienvenue dans SVG Creator le super créateur de dessin !\n";
-    std::cout << "Pour commencer veuillez créer votre dessin :\n";
+    std::cout << UNDL(FWHT("\n Bienvenue dans SVG Creator le générateur de dessin \n"));
     Draw draw = createDraw();
     populateDraw(&draw);
     std::string result = draw.createSvg();

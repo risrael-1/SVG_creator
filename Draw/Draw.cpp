@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "Draw.h"
 #include <vector>
+#include "../Utils/TerminalColors.h"
 
 
 const int rectangleIndex = 0;
@@ -26,7 +27,7 @@ void Draw::createForme(){
     int typeForme;
     do {
         std::cout << "Quel figure voulez vous créer ? \n";
-        std::cout << "- Pour un rectangle taper 1\n";
+        std::cout << BOLD(FYEL("Pour un rectangle taper 1\n"));
         std::cin >> typeForme;
     }while(typeForme != 1 && typeForme != 2 && typeForme != 3 && typeForme != 4);
     switch(typeForme){
