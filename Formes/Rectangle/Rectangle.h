@@ -1,4 +1,3 @@
-
 #include "../../Utils/Point/Point.h"
 #include "../Forme.h"
 

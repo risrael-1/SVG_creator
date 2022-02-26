@@ -7,9 +7,11 @@
 
 
 const int rectangleIndex = 0;
+const int circleIndex = 3;
 const int lineIndex = 12;
 int forme = 0;
 Rectangle rectangle;
+Circle circle;
 #define M 1
 #define N 1
 
@@ -28,11 +30,13 @@ void Draw::createForme(){
     do {
         std::cout << "Quel figure voulez vous créer ? \n";
         std::cout << BOLD(FYEL("Pour un rectangle taper 1\n"));
+        std::cout << BOLD(FYEL("Pour un cercle taper 2\n"));
         std::cin >> typeForme;
     }while(typeForme != 1 && typeForme != 2 && typeForme != 3 && typeForme != 4);
     switch(typeForme){
        
         case 1: this->createRectangle();
+        case 2: this->createCircle(); break;
         forme = 1;break;
         default: break;
     }
@@ -52,6 +56,25 @@ bool Draw::rectangleIsconform(Rectangle rectangle) {
     if(!this->pointIsConform(rectangle.getCorner())) return false;
     else if(rectangle.getCorner().getX() + rectangle.getLargeur() > this->largeur) return false;
     else if(rectangle.getCorner().getY() + rectangle.getHauteur() > this->hauteur) return false;
+    else return true;
+}
+
+void Draw::createCircle() {
+    bool isConform;
+    circle = Circle::create();
+    isConform = this->circleIsconform(circle);
+    if(!isConform) {
+        int cancelOrRetry = this->cancelOrRetry();
+        if(cancelOrRetry == 1) {this->createCircle();}
+    }
+}
+
+bool Draw::circleIsconform(Circle circle) {
+    bool isConform = true;
+    if(!this->pointIsConform(circle.getCenter())) return false;
+    else if (circle.getCenter().getY() + circle.getRadius() > this->hauteur) return false;
+    else if (circle.getCenter().getX() + circle.getRadius() > this->largeur) return false;
+
     else return true;
 }
 

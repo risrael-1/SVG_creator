@@ -9,6 +9,7 @@
 #include "../Utils/Point/Point.h"
 
 #include "../Formes/Rectangle/Rectangle.h"
+#include "../Formes/Circle/Circle.h"
 
 class Draw {
 
@@ -27,10 +28,11 @@ private:
     std::string name;
 
     void createRectangle();
+    void createCircle();
     int cancelOrRetry();
     bool pointIsConform(Point point);
     bool rectangleIsconform(Rectangle rectangle);
-
+    bool circleIsconform(Circle circle);
 };
 
 
