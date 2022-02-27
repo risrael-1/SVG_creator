@@ -1,7 +1,3 @@
-//
-// Created by VIDAL Léo on 06/02/2021.
-//
-
 #include <iostream>
 #include "Color.h"
 #include "../TerminalColors.h"

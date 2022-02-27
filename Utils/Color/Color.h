@@ -1,7 +1,3 @@
-//
-// Created by VIDAL Léo on 06/02/2021.
-//
-
 #ifndef SVG_CREATOR_COLOR_H
 #define SVG_CREATOR_COLOR_H
 

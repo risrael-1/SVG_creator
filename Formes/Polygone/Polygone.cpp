@@ -1,7 +1,3 @@
-//
-// Created by Dima on 09/01/2021.
-//
-
 #include <iostream>
 #include "Polygone.h"
 

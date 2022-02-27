@@ -1,7 +1,3 @@
-//
-// Created by Dima on 28/12/2020.
-//
-
 #include <iostream>
 #include "Point.h"
 

@@ -1,7 +1,3 @@
-//
-// Created by VIDAL Léo on 28/01/2021.
-//
-
 #include <iostream>
 #include "Line.h"
 

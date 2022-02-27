@@ -1,7 +1,3 @@
-//
-// Created by Dima on 28/12/2020.
-//
-
 #ifndef SVG_CREATOR_POINT_H
 #define SVG_CREATOR_POINT_H
 
