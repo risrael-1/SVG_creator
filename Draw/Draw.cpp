@@ -139,7 +139,7 @@ std::string Draw::createSvg() {
     std::string fileName = this->name + ".svg";
     std::ofstream svgFile;
     svgFile.open(fileName, std::ios::app);
-    if(svgFile.is_open()) {std::cout << "file open \n";}
+    if(svgFile.is_open()) {}
     svgFile << "<svg ";
     svgFile << "width=\"" << this->getLargeur() << "\" ";
     svgFile << "height=\"" << this->getHauteur() << "\" \n";
