@@ -125,7 +125,7 @@ int main() {
         std::cout << BOLD(FCYN("Créer une forme 1\n"));
         std::cout << BOLD(FMAG("Afficher le contenu d'un dessin 2\n"));
         std::cout << BOLD(FMAG("Fusionner deux dessins 3\n"));
-        std::cout << BOLD(FMAG("Sauvegarder un dessin 4\n"));
+        std::cout << BOLD(FMAG("Supprimer un elmeent d'un dessin 4\n"));
         std::cin >> selectedactions;
     }while(selectedactions != 1 && selectedactions != 2 && selectedactions != 3 && selectedactions != 4);
     switch(selectedactions){
