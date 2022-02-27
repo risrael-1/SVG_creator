@@ -85,17 +85,18 @@ void fusionDraw() {
 
 void removeElementDraw() {
     std::string name;
+    std::string newFile = "newfIle";
     std::cout << BOLD(FBLU("Merci d'entrer le nom de votre fichier : \n \n"));
     std::cin >> name;
     std::string fileName = name + ".svg";
     std::ifstream file;
     file.open(fileName);
-    std::string fileNameRemove = "newfIle" + ".svg";
+    std::string fileNameRemove = newFile + ".svg";
     std::ofstream fileRemove;
     fileRemove.open(fileNameRemove, std::ios::app);
     if (!file.good())
     {
-        std::cout << "Ouverture ipossible" << std::endl;
+        std::cout << "Ouverture impossible" << std::endl;
     }else{
         std::string line;
         while (std::getline(file, line)) {
@@ -119,13 +120,13 @@ void populateDraw(Draw* draw) {
 }
 
 int main() {
-    std::cout << UNDL(FWHT("\n Bienvenue dans SVG Creator le générateur de dessin \n"));
+    std::cout << UNDL(FWHT("\n Bienvenue dans SVG Creator \n"));
     int selectedactions;
     do {
         std::cout << BOLD(FCYN("Créer une forme 1\n"));
         std::cout << BOLD(FMAG("Afficher le contenu d'un dessin 2\n"));
         std::cout << BOLD(FMAG("Fusionner deux dessins 3\n"));
-        std::cout << BOLD(FMAG("Supprimer un elmeent d'un dessin 4\n"));
+        std::cout << BOLD(FMAG("Supprimer un élément d'un dessin 4\n"));
         std::cin >> selectedactions;
     }while(selectedactions != 1 && selectedactions != 2 && selectedactions != 3 && selectedactions != 4);
     switch(selectedactions){

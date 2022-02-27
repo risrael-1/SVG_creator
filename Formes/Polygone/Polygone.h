@@ -21,8 +21,6 @@ public:
     std::vector<Point> getListPoint();
 
     void draw(std::string fileName);
-
-
 };
 
 
