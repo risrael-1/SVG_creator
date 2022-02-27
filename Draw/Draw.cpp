@@ -4,6 +4,8 @@
 #include "Draw.h"
 #include <vector>
 #include "../Utils/TerminalColors.h"
+#include <fstream>
+
 
 
 int forme = 0;

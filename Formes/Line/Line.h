@@ -3,9 +3,10 @@
 
 
 #include "../../Utils/Point/Point.h"
-#include "../Forme.h"
+#include "../../Utils/Color/Color.h"
 
-class Line : public Forme{
+
+class Line {
 
 private:
     Point a;

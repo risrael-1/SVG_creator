@@ -1,7 +1,8 @@
 #include "../../Utils/Point/Point.h"
-#include "../Forme.h"
+#include "../../Utils/Color/Color.h"
 
-class Rectangle : public Forme {
+
+class Rectangle {
 public:
     static Rectangle create();
     Rectangle();

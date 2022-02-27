@@ -4,9 +4,10 @@
 
 #include <vector>
 #include "../../Utils/Point/Point.h"
-#include "../Forme.h"
+#include "../../Utils/Color/Color.h"
 
-class Polygone : public Forme {
+
+class Polygone {
 private:
     std::vector<Point> listPoint;
     Color color;

@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Line.h"
+#include <fstream>
+
 
 Line::Line(Point a, Point b, Color color) {
     this->a = a;

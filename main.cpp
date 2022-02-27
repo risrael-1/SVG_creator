@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "Utils/TerminalColors.h"
+#include <fstream>
 
 #include "Draw/Draw.h"
 
@@ -34,7 +35,7 @@ void afficheDraw() {
     file.open(fileName);
     if (!file.good())
     {
-        std::cout << "Ouverture ipossible" << std::endl;
+        std::cout << "Ouverture impossible" << std::endl;
     }else{
         std::string line;
         while (std::getline(file, line)) {

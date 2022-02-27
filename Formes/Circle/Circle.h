@@ -4,9 +4,8 @@
 
 #include "../../Utils/Point/Point.h"
 #include "../../Utils/Color/Color.h"
-#include "../Forme.h"
 
-class Circle : public Forme {
+class Circle {
 public:
     static Circle create();
     Circle();

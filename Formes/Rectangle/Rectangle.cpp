@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Rectangle.h"
+#include <fstream>
+
 
 // Passage par me10thode statique car le constructeur par défaut
 // d'un objet est automatiquement appeler lorsque celui ci est le membre d'une classe
